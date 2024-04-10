@@ -8,4 +8,8 @@ def home(request):
 
 
 def contacts(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        textarea = request.POST.get('textarea')
+        print(f'Вывод запросов: {email}: {textarea}')
     return render(request, 'catalog/contacts.html')
