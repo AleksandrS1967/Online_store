@@ -35,7 +35,7 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category,
         on_delete=models.SET_NULL,
-        verbose_name="Категозия",
+        verbose_name="Категория",
         **NULLABLE,
     )
     price = models.IntegerField(verbose_name="Цена")
