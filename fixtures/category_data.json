@@ -3,40 +3,24 @@
     "model": "catalog.category",
     "pk": 1,
     "fields": {
-      "product_name": "Ноутбуки",
-      "description": "Ноутбук производства ASUS."
+      "product_name": "Смартфоны",
+      "description": "модели смартфонов"
     }
   },
   {
     "model": "catalog.category",
     "pk": 2,
     "fields": {
-      "product_name": "мышки",
-      "description": "беспроврдная мышка"
+      "product_name": "Вода",
+      "description": "минеральные воды"
     }
   },
   {
     "model": "catalog.category",
     "pk": 3,
     "fields": {
-      "product_name": "Телевизоры",
-      "description": "Телевизор 65 дюймов"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 4,
-    "fields": {
-      "product_name": "Мониторы",
-      "description": "Монитор 28 дюймов"
-    }
-  },
-  {
-    "model": "catalog.category",
-    "pk": 5,
-    "fields": {
-      "product_name": "Телефоны",
-      "description": "Смартфоны"
+      "product_name": "Ювелирка",
+      "description": "ювелирные изделия"
     }
   }
 ]

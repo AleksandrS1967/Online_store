@@ -52,7 +52,7 @@ class Command(BaseCommand):
             product_for_create.append(
                 Product(product_name=product["fields"]["product_name"],
                         # получаем категорию из базы данных для корректной связки объектов
-                        description=Category.objects.get(pk=product["fields"]["category"]),
+                        category=Category.objects.get(pk=product["fields"]["category"]),
                         price=product["fields"]["price"])
             )
 

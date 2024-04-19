@@ -5,7 +5,7 @@ NULLABLE = {"blank": True, "null": True}
 
 class Category(models.Model):
     product_name = models.CharField(
-        max_length=250, verbose_name="наименование", help_text="Введите название товара"
+        max_length=150, verbose_name="наименование", help_text="Введите название товара"
     )
     description = models.TextField(verbose_name="описание")
 
@@ -34,9 +34,8 @@ class Product(models.Model):
     )
     category = models.ForeignKey(
         Category,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         verbose_name="Категория",
-        **NULLABLE,
     )
     price = models.IntegerField(verbose_name="Цена")
     created_at = models.DateTimeField(
