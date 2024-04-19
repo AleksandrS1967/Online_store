@@ -1,0 +1,54 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "product_name": "Телефон",
+      "description": "Смартфон Samsung Galaxy S22",
+      "images": "images/i.webp",
+      "category": 5,
+      "price": 60000,
+      "created_at": "2024-04-18T19:32:38Z",
+      "updated_at": "2024-04-18T19:32:46Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "product_name": "Ноутбуки",
+      "description": "Ноутбуки производства ASUS.",
+      "images": "images/i_1.webp",
+      "category": 1,
+      "price": 100000,
+      "created_at": "2024-04-18T19:37:08Z",
+      "updated_at": "2024-04-18T19:37:13Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "product_name": "мышки",
+      "description": "беспроводная мышь/ разрешение: 1500 dpi ",
+      "images": "",
+      "category": 2,
+      "price": 1400,
+      "created_at": "2024-04-18T19:43:00Z",
+      "updated_at": "2024-04-18T19:43:04Z"
+    }
+  },
+    {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "product_name": "Телевизор",
+      "description": "Телевизор 65 дюймов",
+      "images": "",
+      "category": 3,
+      "price": 110000,
+      "created_at": "2024-04-18T19:43:00Z",
+      "updated_at": "2024-04-18T19:43:04Z"
+    }
+  }
+]

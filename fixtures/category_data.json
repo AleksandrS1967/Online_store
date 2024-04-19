@@ -1,0 +1,42 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "product_name": "Ноутбуки",
+      "description": "Ноутбук производства ASUS."
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "product_name": "мышки",
+      "description": "беспроврдная мышка"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "product_name": "Телевизоры",
+      "description": "Телевизор 65 дюймов"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "product_name": "Мониторы",
+      "description": "Монитор 28 дюймов"
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "product_name": "Телефоны",
+      "description": "Смартфоны"
+    }
+  }
+]
