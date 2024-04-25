@@ -8,3 +8,8 @@ def media_filter(path):
     if path:
         return f'/media/{path}'
     return '#'
+
+
+@register.filter()
+def description_filter(text):
+    return text[:100]

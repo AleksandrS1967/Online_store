@@ -7,7 +7,7 @@
                 <img src="{{ product.images | media_filter }}" style="height: 200px; width: max-content">
                 <div class="card-body">
                     <p class="card-text">Название: {{ product.product_name }}</p>
-                    <p class="card-text">Описание: {{ product.description }}</p>
+                    <p class="card-text">Описание: {{ product.description | description_filter }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a href="{% url 'catalog:product_detail' product.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Подробнее</a>
