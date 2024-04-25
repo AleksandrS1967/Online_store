@@ -1,0 +1,18 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center col-10">
+    <h2 class="display-4 fw-normal col-10 mx-auto text-center">{{ title_name }}</h2>
+    <img src="{{ product.images | media_filter }}" style="height: 200px; width: max-content">
+</div>
+<ul class="col-10 mx-auto">
+    <li>Название: {{ title_name }}</li>
+    <li>Описание: {{ product.description }}</li>
+    <li>Цена: {{ product.price }}</li>
+</ul>
+<div class="col-10 mx-auto">
+    <a type="button" class="btn btn-sm btn-outline-secondary"
+       href="{% url 'catalog:home' %}">Назад</a>
+</div>
+{% endblock %}

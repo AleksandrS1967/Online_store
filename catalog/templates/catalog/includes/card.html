@@ -1,0 +1,22 @@
+{% load my_tags %}
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for product in product_list %}
+        <div class="col">
+            <div class="card shadow-sm">
+                <img src="{{ product.images | media_filter }}" style="height: 200px; width: max-content">
+                <div class="card-body">
+                    <p class="card-text">Название: {{ product.product_name }}</p>
+                    <p class="card-text">Описание: {{ product.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="{% url 'catalog:product_detail' product.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                        </div>
+                        <small class="text-body-secondary">{{ product.price }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
