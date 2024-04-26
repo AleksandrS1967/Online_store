@@ -12,4 +12,7 @@ def media_filter(path):
 
 @register.filter()
 def description_filter(text):
-    return text[:100]
+    if text != None:
+        return text[:100]
+    else:
+        return 'нет описания'

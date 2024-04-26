@@ -10,7 +10,8 @@
                     <p class="card-text">Описание: {{ product.description | description_filter }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="{% url 'catalog:product_detail' product.pk %}" type="button" class="btn btn-sm btn-outline-secondary">Подробнее</a>
+                            <a href="{% url 'catalog:product_detail' product.pk %}" type="button"
+                               class="btn btn-sm btn-outline-secondary">Подробнее</a>
                         </div>
                         <small class="text-body-secondary">{{ product.price }}</small>
                     </div>
