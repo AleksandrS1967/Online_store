@@ -26,7 +26,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         with connection.cursor() as cur:
-            cur.execute(f'TRUNCATE TABLE catalog_category RESTART IDENTITY CASCADE;')
+            cur.execute('TRUNCATE TABLE catalog_category RESTART IDENTITY CASCADE;')
 
         # Удалите все продукты
         # Удалите все категории
@@ -51,9 +51,12 @@ class Command(BaseCommand):
         for product in Command.json_read_products():
             product_for_create.append(
                 Product(product_name=product["fields"]["product_name"],
+                        description=product["fields"]["description"],
                         # получаем категорию из базы данных для корректной связки объектов
                         category=Category.objects.get(pk=product["fields"]["category"]),
-                        price=product["fields"]["price"])
+                        price=product["fields"]["price"],
+                        images=product["fields"]["images"])
+
             )
 
         # Создаем объекты в базе с помощью метода bulk_create()

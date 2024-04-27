@@ -4,12 +4,12 @@
     "pk": 1,
     "fields": {
       "product_name": "Улеймская",
-      "description": "вода из скважины",
-      "images": "",
+      "description": "Вода из скважины",
+      "images": "images/81400_original.jpg",
       "category": 2,
       "price": 32,
-      "created_at": "2024-04-20T21:40:29Z",
-      "updated_at": "2024-04-19T21:40:31Z"
+      "created_at": "2024-04-27T11:56:18Z",
+      "updated_at": "2024-04-27T11:56:21Z"
     }
   },
   {
@@ -17,12 +17,12 @@
     "pk": 2,
     "fields": {
       "product_name": "Снежская",
-      "description": "обработанная вода, кипяченая",
-      "images": "",
+      "description": "Вода обработанная",
+      "images": "images/aHR0cHM6Ly90dm95ZG9tLnJ1L3Bob3Rvcy8xMDAxNDU5OTEyLzEwMDE0NTk5MTJfMDEuanBn.jpg",
       "category": 2,
       "price": 43,
-      "created_at": "2024-04-19T21:41:39Z",
-      "updated_at": "2024-04-19T21:41:40Z"
+      "created_at": "2024-04-27T11:58:58Z",
+      "updated_at": "2024-04-27T11:59:00Z"
     }
   },
   {
@@ -30,12 +30,12 @@
     "pk": 3,
     "fields": {
       "product_name": "Кольцо",
-      "description": "кольцо серебрянное",
-      "images": "",
+      "description": "Обручальные кольца",
+      "images": "images/7ebfe082f4890d859ac9eb8cc6q8--svadebnyj-salon-obruchalnye-koltsa-iz-belogo-zolota_tU83aMY.jpg",
       "category": 3,
       "price": 5000,
-      "created_at": "2024-04-19T21:42:23Z",
-      "updated_at": "2024-04-19T21:42:25Z"
+      "created_at": "2024-04-27T11:57:40Z",
+      "updated_at": "2024-04-27T11:57:41Z"
     }
   },
   {
@@ -43,12 +43,12 @@
     "pk": 4,
     "fields": {
       "product_name": "Самсунг",
-      "description": "телефон среднего качества",
-      "images": "",
+      "description": "Нормальный телефон",
+      "images": "images/877b795b3d34d940c920e10bcb63a29a.jpg",
       "category": 1,
       "price": 15000,
-      "created_at": "2024-04-19T21:43:13Z",
-      "updated_at": "2024-04-19T21:43:15Z"
+      "created_at": "2024-04-27T11:58:14Z",
+      "updated_at": "2024-04-27T11:58:15Z"
     }
   },
   {
@@ -56,12 +56,12 @@
     "pk": 5,
     "fields": {
       "product_name": "Айфон",
-      "description": "телефон высшего качества",
-      "images": "",
+      "description": "Хороший телефон",
+      "images": "images/fa716b9a119eafc4165b108d45ee4648.jpg",
       "category": 1,
       "price": 60000,
-      "created_at": "2024-04-19T21:43:57Z",
-      "updated_at": "2024-04-19T21:43:59Z"
+      "created_at": "2024-04-27T11:57:04Z",
+      "updated_at": "2024-04-27T11:57:05Z"
     }
   }
 ]
