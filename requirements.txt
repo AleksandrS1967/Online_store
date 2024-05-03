@@ -3,4 +3,4 @@ pillow
 ipython
 psycopg2-binary
 black
-
+pytils
