@@ -12,10 +12,9 @@ class PublicationCreateView(CreateView):
     success_url = reverse_lazy('publication:list')
 
     def form_valid(self, form):
-        if form.is_valid():
-            new_mat = form.save()
-            new_mat.slug = slugify(new_mat.name)
-            new_mat.save()
+        new_mat = form.save(commit=False)
+        new_mat.slug = slugify(new_mat.name)
+        new_mat.save()
 
         return super().form_valid(form)
 
@@ -37,7 +36,8 @@ class PublicationDetailView(DetailView):
         self.object.counter += 1
         self.object.save()
         if self.object.counter == 100:
-            send_message_mail(emails=['sanyastronger@rambler.ru'], text=f"Публикация {self.object.name} набрала 100 просмотров")
+            send_message_mail(emails=['sanyastronger@rambler.ru'],
+                              text=f"Публикация {self.object.name} набрала 100 просмотров")
 
         return self.object
 
@@ -48,10 +48,9 @@ class PublicationUpdateView(UpdateView):
     success_url = reverse_lazy('publication:list')
 
     def form_valid(self, form):
-        if form.is_valid():
-            new_mat = form.save()
-            new_mat.slug = slugify(new_mat.name)
-            new_mat.save()
+        new_mat = form.save(commit=False)
+        new_mat.slug = slugify(new_mat.name)
+        new_mat.save()
 
         return super().form_valid(form)
 

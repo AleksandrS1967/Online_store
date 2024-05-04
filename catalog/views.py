@@ -8,6 +8,7 @@ from django.views import View
 from django.views.generic import ListView, DetailView
 
 from catalog.models import Product
+from catalog.utils.user_feedback import feedback
 
 
 # Create your views here.
@@ -15,11 +16,7 @@ from catalog.models import Product
 
 class ProductListView(ListView):
     model = Product
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        context['title_name'] = 'Online Store'
-        return context
+    extra_context = {'title_name': 'Online Store'}
 
 
 class ContactsView(View):
@@ -36,18 +33,8 @@ class ContactsView(View):
         textarea = request.POST.get("textarea")
 
         data = {"User": email, "Textarea": textarea}
-
         json_f = "data.json"
-
-        with open(json_f, "a") as f:
-            if os.stat(json_f).st_size == 0:
-                json.dump([data], f)
-            else:
-                with open(json_f) as f_:
-                    list_ = json.load(f_)
-                    list_.append(data)
-                with open(json_f, "w") as f_1:
-                    json.dump(list_, f_1)
+        feedback(json_f, data)
 
         return self.get(request)
 
