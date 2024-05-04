@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from pytils.translit import slugify
-
+from publication.utils.email_yandex import send_message_mail
 from publication.models import Publication
 
 
@@ -36,6 +36,8 @@ class PublicationDetailView(DetailView):
         self.object = super().get_object(queryset)
         self.object.counter += 1
         self.object.save()
+        if self.object.counter == 100:
+            send_message_mail(emails=['sanyastronger@rambler.ru'], text=f"Публикация {self.object.name} набрала 100 просмотров")
 
         return self.object
 

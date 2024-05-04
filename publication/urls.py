@@ -10,5 +10,5 @@ urlpatterns = [
     path('', PublicationListView.as_view(), name='list'),
     path('view/<int:pk>', PublicationDetailView.as_view(), name='view'),
     path('edit/<int:pk>', PublicationUpdateView.as_view(), name='edit'),
-    path('delete/<int:pk>', PublicationDeleteView.as_view(), name='delete'),
+    path('delete/<int:pk>', PublicationDeleteView.as_view(), name='delete')
 ]
