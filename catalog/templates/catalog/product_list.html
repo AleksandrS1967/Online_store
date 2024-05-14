@@ -5,5 +5,8 @@
     <h1 class="display-4 fw-normal">{{ title_name|title }}</h1>
     <p class="fs-5 text-muted">Список товаров</p>
 </div>
+<div class="col-10 mb-5 mx-auto text-center">
+    <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить продукт</a>
+</div>
 {% include 'catalog/includes/card.html' %}
 {% endblock %}
