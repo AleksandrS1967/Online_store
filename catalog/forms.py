@@ -1,6 +1,8 @@
 from django import forms
+from django.forms import ModelForm, BooleanField
 
-from catalog.models import Product
+from catalog.models import Product, Version
+
 
 list_valid = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
@@ -25,3 +27,9 @@ class ProductForm(forms.ModelForm):
                 raise forms.ValidationError('название продукта не прошло валидацию')
 
         return cleaned_data
+
+
+class VersionForm(forms.ModelForm):
+    class Meta:
+        model = Version
+        fields = '__all__'
