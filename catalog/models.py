@@ -57,7 +57,8 @@ class Product(models.Model):
 
 
 class Version(models.Model):
-    product_name = models.ForeignKey(Product, verbose_name='продукт', on_delete=models.CASCADE)
+    product_name = models.ForeignKey(Product, verbose_name='наименование', on_delete=models.CASCADE)
+    name = models.CharField(max_length=250, verbose_name="наименование", help_text="Введите название товара")
     version_number = models.PositiveIntegerField(verbose_name='номер версии')
     version_name = models.CharField(max_length=50, verbose_name='название версии')
     current_version = models.BooleanField(verbose_name='признак текущей версии', default=True)
