@@ -4,10 +4,20 @@ from django.forms import ModelForm, BooleanField
 from catalog.models import Product, Version
 
 
+class StyleMixin(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            if isinstance(field, BooleanField):
+                field.widget.attrs['class'] = 'form-check-input'
+            else:
+                field.widget.attrs['class'] = 'form-control'
+
+
 list_valid = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
 
-class ProductForm(forms.ModelForm):
+class ProductForm(StyleMixin, forms.ModelForm):
     class Meta:
         model = Product
         fields = ('product_name', 'category', 'price', 'images', 'description')
@@ -29,7 +39,7 @@ class ProductForm(forms.ModelForm):
         return cleaned_data
 
 
-class VersionForm(forms.ModelForm):
+class VersionForm(StyleMixin, forms.ModelForm):
     class Meta:
         model = Version
         fields = '__all__'
