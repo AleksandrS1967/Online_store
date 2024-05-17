@@ -4,7 +4,7 @@ from django.forms import ModelForm, BooleanField
 from catalog.models import Product, Version
 
 
-class StyleMixin(ModelForm):
+class StyleFormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
@@ -17,7 +17,7 @@ class StyleMixin(ModelForm):
 list_valid = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
 
-class ProductForm(StyleMixin, forms.ModelForm):
+class ProductForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Product
         fields = ('product_name', 'category', 'price', 'images', 'description')
@@ -39,7 +39,7 @@ class ProductForm(StyleMixin, forms.ModelForm):
         return cleaned_data
 
 
-class VersionForm(StyleMixin, forms.ModelForm):
+class VersionForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Version
         fields = '__all__'

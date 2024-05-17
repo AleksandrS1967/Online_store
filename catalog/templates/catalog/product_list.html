@@ -3,10 +3,27 @@
 {% block content %}
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center col-10">
     <h1 class="display-4 fw-normal">{{ title_name|title }}</h1>
+    {% if not category_list %}
+    <p class="fs-5 text-muted">Чтоб появилась возможность добавлять товары</p>
+    <p class="fs-5 text-muted">Добавьте хотя бы одну категорию</p>
+    <p class="fs-5 text-muted">Используя инструмент админки по ссылке:</p>
+    <a type="button" class="btn btn-sm btn-outline-secondary"
+       href="http://127.0.0.1:8000/admin" target="_blank">Админка</a>
+    {% else %}
     <p class="fs-5 text-muted">Список товаров</p>
 </div>
+{% if not product_list %}
+<div class="text-center">
+  <a type="button" class="btn btn-sm btn-outline-secondary"
+   href="{% url 'catalog:create_product' %}">Добавьте первый товар</a>
+</div>
+
+{% else %}
 <div class="col-10 mb-5 mx-auto text-center">
     <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить продукт</a>
+    <a class="btn btn-outline-primary" href="{% url 'catalog:create_version' %}">Добавить версию</a>
 </div>
+{% endif %}
+{% endif %}
 {% include 'catalog/includes/card.html' %}
 {% endblock %}

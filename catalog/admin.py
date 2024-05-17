@@ -25,6 +25,6 @@ class PublicationAdmin(admin.ModelAdmin):
 
 @admin.register(Version)
 class VersionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'version_number', 'version_name',)
-    list_filter = ('product_name',)
+    list_display = ('id', 'product', 'version_number', 'version_name',)
+    list_filter = ('product',)
 

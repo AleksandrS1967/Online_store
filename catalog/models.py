@@ -48,7 +48,7 @@ class Product(models.Model):
     )
 
     def __str__(self):
-        return f"{self.product_name} {self.description} {self.price}"
+        return f"{self.product_name}"
 
     class Meta:
         verbose_name = "продукт"
@@ -57,14 +57,13 @@ class Product(models.Model):
 
 
 class Version(models.Model):
-    product_name = models.ForeignKey(Product, verbose_name='наименование', on_delete=models.CASCADE)
-    name = models.CharField(max_length=250, verbose_name="наименование", help_text="Введите название товара")
+    product = models.ForeignKey(Product, verbose_name='продукт', on_delete=models.CASCADE)
     version_number = models.PositiveIntegerField(verbose_name='номер версии')
     version_name = models.CharField(max_length=50, verbose_name='название версии')
     current_version = models.BooleanField(verbose_name='признак текущей версии', default=True)
 
     def __str__(self):
-        return f'{self.product_name} номер {self.version_number} название {self.version_name}'
+        return f'{self.product} номер {self.version_number} название {self.version_name}'
 
     class Meta:
         verbose_name = "версия"
