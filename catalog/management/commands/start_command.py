@@ -9,7 +9,9 @@ class Command(BaseCommand):
 
     @staticmethod
     def json_read_categories():
-        with open(os.path.join('fixtures', 'category_data.json'), encoding='utf-8') as category:
+        with open(
+            os.path.join("fixtures", "category_data.json"), encoding="utf-8"
+        ) as category:
             data = json.load(category)
             return data
 
@@ -17,7 +19,9 @@ class Command(BaseCommand):
 
     @staticmethod
     def json_read_products():
-        with open(os.path.join('fixtures', 'product_data.json'), encoding='utf-8') as product:
+        with open(
+            os.path.join("fixtures", "product_data.json"), encoding="utf-8"
+        ) as product:
             data = json.load(product)
             return data
 
@@ -26,7 +30,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         with connection.cursor() as cur:
-            cur.execute('TRUNCATE TABLE catalog_category RESTART IDENTITY CASCADE;')
+            cur.execute("TRUNCATE TABLE catalog_category RESTART IDENTITY CASCADE;")
 
         # Удалите все продукты
         # Удалите все категории
@@ -41,7 +45,10 @@ class Command(BaseCommand):
         # Обходим все значения категорий из фиктсуры для получения информации об одном объекте
         for category in Command.json_read_categories():
             category_for_create.append(
-                Category(product_name=category["fields"]["product_name"], description=category["fields"]["description"])
+                Category(
+                    product_name=category["fields"]["product_name"],
+                    description=category["fields"]["description"],
+                )
             )
 
         # Создаем объекты в базе с помощью метода bulk_create()
@@ -50,13 +57,14 @@ class Command(BaseCommand):
         # Обходим все значения продуктов из фиктсуры для получения информации об одном объекте
         for product in Command.json_read_products():
             product_for_create.append(
-                Product(product_name=product["fields"]["product_name"],
-                        description=product["fields"]["description"],
-                        # получаем категорию из базы данных для корректной связки объектов
-                        category=Category.objects.get(pk=product["fields"]["category"]),
-                        price=product["fields"]["price"],
-                        images=product["fields"]["images"])
-
+                Product(
+                    product_name=product["fields"]["product_name"],
+                    description=product["fields"]["description"],
+                    # получаем категорию из базы данных для корректной связки объектов
+                    category=Category.objects.get(pk=product["fields"]["category"]),
+                    price=product["fields"]["price"],
+                    images=product["fields"]["images"],
+                )
             )
 
         # Создаем объекты в базе с помощью метода bulk_create()

@@ -6,7 +6,13 @@ from django.forms import inlineformset_factory
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 from catalog.forms import ProductForm, VersionForm
 from catalog.models import Product, Version, Category
@@ -18,7 +24,7 @@ from catalog.utils.user_feedback import feedback
 
 class ProductListView(ListView):
     model = Product
-    extra_context = {'title_name': 'Online Store'}
+    extra_context = {"title_name": "Online Store"}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
@@ -31,9 +37,9 @@ class ProductListView(ListView):
             if activity:
                 product.activ_version = activity.last().version_name
             else:
-                product.activ_version = '...'
-        context['product_list'] = products
-        context['category_list'] = category
+                product.activ_version = "..."
+        context["product_list"] = products
+        context["category_list"] = category
 
         return context
 
@@ -42,7 +48,7 @@ class ContactsView(View):
     @staticmethod
     def get(request):
         context = {
-            'title_name': 'Контакты',
+            "title_name": "Контакты",
         }
 
         return render(request, "catalog/contacts.html", context)
@@ -60,23 +66,23 @@ class ContactsView(View):
 
 class ProductDetailView(DetailView):
     model = Product
-    success_url = reverse_lazy('catalog:home')
+    success_url = reverse_lazy("catalog:home")
 
 
 class ProductDeleteView(DeleteView):
     model = Product
-    success_url = reverse_lazy('catalog:home')
+    success_url = reverse_lazy("catalog:home")
 
 
 class ProductCreateView(CreateView):
     model = Product
     form_class = ProductForm
-    success_url = reverse_lazy('catalog:home')
+    success_url = reverse_lazy("catalog:home")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         versions = Version.objects.filter(product=self.object)
-        context['count_version'] = len(versions)
+        context["count_version"] = len(versions)
 
         return context
 
@@ -84,21 +90,23 @@ class ProductCreateView(CreateView):
 class ProductUpdateView(UpdateView):
     model = Product
     form_class = ProductForm
-    success_url = reverse_lazy('catalog:home')
+    success_url = reverse_lazy("catalog:home")
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        VersionFormset = inlineformset_factory(Product, Version, form=VersionForm, extra=0)
-        if self.request.method == 'POST':
-            context['formset'] = VersionFormset(self.request.POST, instance=self.object)
+        VersionFormset = inlineformset_factory(
+            Product, Version, form=VersionForm, extra=0
+        )
+        if self.request.method == "POST":
+            context["formset"] = VersionFormset(self.request.POST, instance=self.object)
         else:
-            context['formset'] = VersionFormset(instance=self.object)
+            context["formset"] = VersionFormset(instance=self.object)
         versions = Version.objects.filter(product=self.object)
-        context['count_version'] = len(versions)
+        context["count_version"] = len(versions)
         return context
 
     def form_valid(self, form):
-        formset = self.get_context_data()['formset']
+        formset = self.get_context_data()["formset"]
 
         self.object = form.save()
         if formset.is_valid():
@@ -111,4 +119,4 @@ class ProductUpdateView(UpdateView):
 class VersionCreateView(CreateView):
     model = Version
     form_class = VersionForm
-    success_url = reverse_lazy('catalog:home')
+    success_url = reverse_lazy("catalog:home")

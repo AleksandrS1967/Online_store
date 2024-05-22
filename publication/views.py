@@ -1,5 +1,11 @@
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import (
+    CreateView,
+    ListView,
+    DetailView,
+    UpdateView,
+    DeleteView,
+)
 from pytils.translit import slugify
 
 from publication.forms import PublicationForm
@@ -11,8 +17,8 @@ from publication.models import Publication
 class PublicationCreateView(CreateView):
     model = Publication
     form_class = PublicationForm
-    #fields = ('name', 'description', 'image', 'publication_activ', 'counter')
-    success_url = reverse_lazy('publication:list')
+    # fields = ('name', 'description', 'image', 'publication_activ', 'counter')
+    success_url = reverse_lazy("publication:list")
 
     def form_valid(self, form):
         new_mat = form.save(commit=False)
@@ -39,8 +45,10 @@ class PublicationDetailView(DetailView):
         self.object.counter += 1
         self.object.save()
         if self.object.counter == 100:
-            send_message_mail(emails=['sanyastronger@rambler.ru'],
-                              text=f"Публикация {self.object.name} набрала 100 просмотров")
+            send_message_mail(
+                emails=["sanyastronger@rambler.ru"],
+                text=f"Публикация {self.object.name} набрала 100 просмотров",
+            )
 
         return self.object
 
@@ -48,8 +56,8 @@ class PublicationDetailView(DetailView):
 class PublicationUpdateView(UpdateView):
     model = Publication
     form_class = PublicationForm
-    #fields = ('name', 'description', 'image', 'publication_activ', 'counter')
-    success_url = reverse_lazy('publication:list')
+    # fields = ('name', 'description', 'image', 'publication_activ', 'counter')
+    success_url = reverse_lazy("publication:list")
 
     def form_valid(self, form):
         new_mat = form.save(commit=False)
@@ -59,9 +67,9 @@ class PublicationUpdateView(UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('publication:view', args=[self.kwargs.get('pk')])
+        return reverse("publication:view", args=[self.kwargs.get("pk")])
 
 
 class PublicationDeleteView(DeleteView):
     model = Publication
-    success_url = reverse_lazy('publication:list')
+    success_url = reverse_lazy("publication:list")

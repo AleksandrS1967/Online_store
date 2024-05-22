@@ -6,8 +6,8 @@ register = template.Library()
 @register.filter()
 def media_filter(path):
     if path:
-        return f'/media/{path}'
-    return '#'
+        return f"/media/{path}"
+    return "#"
 
 
 @register.filter()
@@ -15,4 +15,4 @@ def description_filter(text):
     if text is not None:
         return text[:100]
     else:
-        return 'нет описания'
+        return "нет описания"
