@@ -2,6 +2,7 @@ import json
 
 import os
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
@@ -74,7 +75,7 @@ class ProductDeleteView(DeleteView):
     success_url = reverse_lazy("catalog:home")
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(CreateView, LoginRequiredMixin):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy("catalog:home")
@@ -85,6 +86,13 @@ class ProductCreateView(CreateView):
         context["count_version"] = len(versions)
 
         return context
+
+    def form_valid(self, form):
+        product = form.save()
+        user = self.request.user
+        product.owner = user
+        product.save()
+        return super().form_valid(form)
 
 
 class ProductUpdateView(UpdateView):

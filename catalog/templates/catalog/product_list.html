@@ -14,15 +14,17 @@
 </div>
 {% if not product_list %}
 <div class="text-center">
-  <a type="button" class="btn btn-sm btn-outline-secondary"
-   href="{% url 'catalog:create_product' %}">Добавьте первый товар</a>
+    <a type="button" class="btn btn-sm btn-outline-secondary"
+       href="{% url 'catalog:create_product' %}">Добавьте первый товар</a>
 </div>
 
 {% else %}
+{%  if user.is_authenticated %}
 <div class="col-10 mb-5 mx-auto text-center">
     <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить продукт</a>
     <a class="btn btn-outline-primary" href="{% url 'catalog:create_version' %}">Добавить версию</a>
 </div>
+{% endif %}
 {% endif %}
 {% endif %}
 {% include 'catalog/includes/card.html' %}
