@@ -52,7 +52,7 @@ class Product(models.Model):
         User,
         verbose_name="владелец",
         help_text="Укажите владельца продукта",
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         **NULLABLE
     )
 

@@ -9,7 +9,7 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **options):
-        user = User.objects.create(email="admin")
+        user = User.objects.create(email="admin@rambler.ru")
         user.set_password("1234")
         user.is_active = True
         user.is_staff = True
