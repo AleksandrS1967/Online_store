@@ -3,10 +3,11 @@ import smtplib
 from email.mime.text import MIMEText
 from email.header import Header
 
+password = os.getenv("COTH")
+
 
 def send_message_mail(emails: list, text: str):
     login = "koroleva587@yandex.ru"
-    password = os.getenv("COTH")
 
     message_text = MIMEText(f"{text}", "plain", "utf-8")
     message_text["Subject"] = Header("Важно!!!", "utf-8")
