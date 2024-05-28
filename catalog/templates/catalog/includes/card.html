@@ -1,6 +1,6 @@
 {% load my_tags %}
 <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-4">
         {% for product in product_list %}
         <div class="col">
             <div class="card shadow-sm">
@@ -10,22 +10,25 @@
                     <p class="card-text">Описание: {{ product.description | description_filter }}</p>
                     <p class="text-body-secondary">{{ product.price }} руб.</p>
                     <p class="text-body-secondary">{{ product.activ_version }}</p>
-                    {% if user.is_authenticated %}
-                    {% if user == product.owner %}
+
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <a href="{% url 'catalog:product_detail' product.pk %}" type="button"
                                class="btn btn-sm btn-outline-secondary">Подробнее</a>
-
+                            {% if user.is_authenticated %}
+                            {% if perms.catalog.can_edit_description or user == product.owner %}
+                            <a href="{% url 'catalog:update_product' product.pk %}" type="button"
+                               class="btn btn-sm btn-outline-secondary">Редактировать</a>
+                            {% endif %}
+                            {% if user.is_superuser or user == product.owner %}
                             <a href="{% url 'catalog:product_delete' product.pk %}" type="button"
                                class="btn btn-sm btn-outline-secondary">удалить</a>
 
-                            <a href="{% url 'catalog:update_product' product.pk %}" type="button"
-                               class="btn btn-sm btn-outline-secondary">Обновление</a>
+                            {% endif %}
+                            {% endif %}
                         </div>
                     </div>
-                    {% endif %}
-                    {% endif %}
+
                 </div>
             </div>
         </div>

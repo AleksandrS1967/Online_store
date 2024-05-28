@@ -3,6 +3,8 @@
 {% block content %}
 <div class="pricing-header p-3 pb-md-4 mx-auto text-center col-10">
     <h1 class="display-4 fw-normal">{{ title_name|title }}</h1>
+    {% if perms.catalog.add_product %}
+    {%  if user.is_authenticated %}
     {% if not category_list %}
     <p class="fs-5 text-muted">Чтоб появилась возможность добавлять товары</p>
     <p class="fs-5 text-muted">Добавьте хотя бы одну категорию</p>
@@ -19,11 +21,11 @@
 </div>
 
 {% else %}
-{%  if user.is_authenticated %}
 <div class="col-10 mb-5 mx-auto text-center">
     <a class="btn btn-outline-primary" href="{% url 'catalog:create_product' %}">Добавить продукт</a>
     <a class="btn btn-outline-primary" href="{% url 'catalog:create_version' %}">Добавить версию</a>
 </div>
+{% endif %}
 {% endif %}
 {% endif %}
 {% endif %}

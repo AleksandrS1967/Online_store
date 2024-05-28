@@ -21,7 +21,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     product_activ = models.BooleanField(
-        verbose_name="признак публикации", default=True, **NULLABLE
+        verbose_name="признак публикации", default=False
     )
     product_name = models.CharField(
         max_length=250,

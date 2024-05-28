@@ -1,7 +1,8 @@
 import json
 
 import os
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.exceptions import PermissionDenied
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import inlineformset_factory
 from django.shortcuts import render, get_object_or_404
@@ -15,7 +16,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
 from catalog.models import Product, Version, Category
 from catalog.utils.user_feedback import feedback
 
@@ -23,7 +24,7 @@ from catalog.utils.user_feedback import feedback
 # Create your views here.
 
 
-class ProductListView(ListView):
+class ProductListView(LoginRequiredMixin, ListView):
     model = Product
     extra_context = {"title_name": "Online Store"}
 
@@ -75,8 +76,9 @@ class ProductDeleteView(DeleteView, LoginRequiredMixin):
     success_url = reverse_lazy("catalog:home")
 
 
-class ProductCreateView(CreateView, LoginRequiredMixin):
+class ProductCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Product
+    permission_required = 'catalog.add_product'
     form_class = ProductForm
     success_url = reverse_lazy("catalog:home")
 
@@ -122,6 +124,15 @@ class ProductUpdateView(UpdateView, LoginRequiredMixin):
             formset.save()
 
         return super().form_valid(form)
+
+    def get_form_class(self):
+        user = self.request.user
+        if user == self.object.owner or user.is_superuser:
+            return ProductForm
+        if user.has_perm('catalog.can_edit_description') and user.has_perm(
+                'catalog.can_edit_category') and user.has_perm('catalog.can_edit_product_activ'):
+            return ProductModeratorForm
+        raise PermissionDenied
 
 
 class VersionCreateView(CreateView):

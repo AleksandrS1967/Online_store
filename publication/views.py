@@ -1,4 +1,5 @@
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     CreateView,
     ListView,
@@ -28,7 +29,7 @@ class PublicationCreateView(CreateView):
         return super().form_valid(form)
 
 
-class PublicationListView(ListView):
+class PublicationListView(LoginRequiredMixin, ListView):
     model = Publication
 
     def get_queryset(self, *args, **kwargs):
