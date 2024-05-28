@@ -20,7 +20,7 @@
                             <a href="{% url 'catalog:update_product' product.pk %}" type="button"
                                class="btn btn-sm btn-outline-secondary">Редактировать</a>
                             {% endif %}
-                            {% if user.is_superuser or user == product.owner %}
+                            {% if user.is_superuser %}
                             <a href="{% url 'catalog:product_delete' product.pk %}" type="button"
                                class="btn btn-sm btn-outline-secondary">удалить</a>
 

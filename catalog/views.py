@@ -40,7 +40,8 @@ class ProductListView(LoginRequiredMixin, ListView):
                 product.activ_version = activity.last().version_name
             else:
                 product.activ_version = "..."
-        context["product_list"] = products
+        filter_products = products.filter(product_activ=True)
+        context["product_list"] = filter_products
         context["category_list"] = category
 
         return context
