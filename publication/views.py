@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy, reverse
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import (
     CreateView,
     ListView,
@@ -15,8 +15,9 @@ from publication.models import Publication
 
 
 # Create your views here.
-class PublicationCreateView(CreateView):
+class PublicationCreateView(PermissionRequiredMixin, CreateView):
     model = Publication
+    permission_required = 'publication.add_publication'
     form_class = PublicationForm
     # fields = ('name', 'description', 'image', 'publication_activ', 'counter')
     success_url = reverse_lazy("publication:list")
@@ -54,8 +55,9 @@ class PublicationDetailView(DetailView):
         return self.object
 
 
-class PublicationUpdateView(UpdateView):
+class PublicationUpdateView(PermissionRequiredMixin, UpdateView):
     model = Publication
+    permission_required = 'publication.change_publication'
     form_class = PublicationForm
     # fields = ('name', 'description', 'image', 'publication_activ', 'counter')
     success_url = reverse_lazy("publication:list")
@@ -71,6 +73,7 @@ class PublicationUpdateView(UpdateView):
         return reverse("publication:view", args=[self.kwargs.get("pk")])
 
 
-class PublicationDeleteView(DeleteView):
+class PublicationDeleteView(PermissionRequiredMixin, DeleteView):
     model = Publication
+    permission_required = 'publication.delete_publication'
     success_url = reverse_lazy("publication:list")
