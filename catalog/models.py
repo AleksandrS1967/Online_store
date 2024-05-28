@@ -20,6 +20,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    product_activ = models.BooleanField(
+        verbose_name="признак публикации", default=True, **NULLABLE
+    )
     product_name = models.CharField(
         max_length=250,
         verbose_name="наименование",
@@ -63,6 +66,11 @@ class Product(models.Model):
         verbose_name = "продукт"
         verbose_name_plural = "продукты"
         ordering = ["product_name"]
+        permissions = [
+            ('can_edit_description', 'Can edit description'),
+            ('can_edit_category', 'Can edit Category'),
+            ('can_edit_product_activ', 'Can edit Product_activ')
+        ]
 
 
 class Version(models.Model):
