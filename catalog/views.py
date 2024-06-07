@@ -18,6 +18,7 @@ from django.views.generic import (
 
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
 from catalog.models import Product, Version, Category
+from catalog.services import get_categories_from_cache
 from catalog.utils.user_feedback import feedback
 
 
@@ -134,6 +135,15 @@ class ProductUpdateView(UpdateView, LoginRequiredMixin):
                 'catalog.can_edit_category') and user.has_perm('catalog.can_edit_product_activ'):
             return ProductModeratorForm
         raise PermissionDenied
+
+
+class CategoryListView(LoginRequiredMixin, ListView):
+    model = Category
+    categories = Category.objects.all()
+    extra_context = {'title_name': 'Категории'}
+
+    def get_queryset(self):
+        return get_categories_from_cache()
 
 
 class VersionCreateView(CreateView):

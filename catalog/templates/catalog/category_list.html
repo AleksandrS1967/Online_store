@@ -1,0 +1,20 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="col-6">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                {{ title_name|title }}
+            </h3>
+        </div>
+        <div class="card-body">
+            <ul>
+                {% for category in object_list %}
+                <li>{{ category }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
